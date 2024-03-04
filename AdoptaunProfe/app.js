@@ -6,17 +6,11 @@ var logger = require('morgan');
 var http = require('http');
 const mysql = require('mysql');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var servicesRouter = require('./routes/services');
-
-var app = express();
-
 //Database
 var datosBD = {
   host:"localhost",
-  user:"admin",
-  password:"",
+  user:"AUP",
+  password:"Abrete01",
   database:"adoptaunprofe"
 }
 
@@ -25,6 +19,12 @@ var poolBD = mysql.createPool(datosBD);
 module.exports = {
   pool: poolBD,
 };
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var servicesRouter = require('./routes/services');
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

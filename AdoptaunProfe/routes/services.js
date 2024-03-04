@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app.js');
 
+
 /* GET home page. */
 router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
-    var select='SELECT * from profesores where nombre like \'%?%\''
-    var n=req.params.keyword;
+    var select='SELECT * from profesores where nombre like ?'
+    var n='%'+req.params.keyword+'%';
     //en esta funcion se guardará tanto la informacio como el logo
     app.pool.getConnection(function (err, conexion){
         if(err){
