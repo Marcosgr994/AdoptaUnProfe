@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var http = require('http');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -36,6 +37,14 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+http.createServer(app).listen(3000, function (err){
+  if(err){
+      console.error("Se ha producido un error al iniciar el servidor: " + err.message);
+  } else {
+      console.log("Servidor iniciado correctamente");
+  }
 });
 
 module.exports = app;
