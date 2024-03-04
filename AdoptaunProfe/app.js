@@ -4,11 +4,27 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http = require('http');
+const mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var servicesRouter = require('./routes/services');
 
 var app = express();
+
+//Database
+var datosBD = {
+  host:"localhost",
+  user:"admin",
+  password:"",
+  database:"adoptaunprofe"
+}
+
+var poolBD = mysql.createPool(datosBD);
+
+module.exports = {
+  pool: poolBD,
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/services', servicesRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -46,5 +63,3 @@ http.createServer(app).listen(3000, function (err){
       console.log("Servidor iniciado correctamente");
   }
 });
-
-module.exports = app;
