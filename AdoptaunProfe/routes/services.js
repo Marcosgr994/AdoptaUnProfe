@@ -5,7 +5,7 @@ var app = require('../app.js');
 
 /* GET home page. */
 router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
-    var select='SELECT * from profesores where nombre like ?'
+    var select='SELECT * from profesores where UPPER(nombre) like UPPER(?) or UPPER(materia) like UPPER(?) order by nombre'
     var n='%'+req.params.keyword+'%';
     //en esta funcion se guardará tanto la informacio como el logo
     app.pool.getConnection(function (err, conexion){
@@ -13,7 +13,7 @@ router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
             res.status(500);
             res.json({msg: "Error al obtener la conexión en la base de datos"});
         } else{
-            conexion.query(select, n, function (error, data){
+            conexion.query(select, [n, n], function (error, data){
 
                 if(error){
                     //nos aseguramos que la facultad exista
@@ -26,7 +26,7 @@ router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
                         res.json({listado: data});
                     } else {
                         res.status(400);
-                        res.json({msg: "error al realizar la consulta a la base de datos"});
+                        res.json({msg: "No existe ningún profesor con esas características"});
                     }
                 }
             })
