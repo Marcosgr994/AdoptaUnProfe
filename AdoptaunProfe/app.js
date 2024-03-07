@@ -49,7 +49,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-http.createServer(app).listen(3000, function (err){
+http.createServer(app).listen(80, function (err){
   if(err){
       console.error("Se ha producido un error al iniciar el servidor: " + err.message);
   } else {
