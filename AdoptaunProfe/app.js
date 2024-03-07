@@ -4,20 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http = require('http');
-const mysql = require('mysql');
+
+var db = require('./database');
 
 //Database
-var datosBD = {
-  host:"localhost",
-  user:"AUP",
-  password:"Abrete01",
-  database:"adoptaunprofe"
-}
-
-var poolBD = mysql.createPool(datosBD);
 
 module.exports = {
-  pool: poolBD,
+  pool: db.pool,
 };
 
 var indexRouter = require('./routes/index');
