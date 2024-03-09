@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+<<<<<<< HEAD
     "cypress": "^13.6.6"
   },
   "name": "cypress",
@@ -178,4 +179,10 @@
   ],
   "author": "Javier",
   "license": "ISC"
+=======
+    "cypress": "^13.6.6",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+>>>>>>> Main
 }
