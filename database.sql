@@ -14,6 +14,8 @@ values
 ('Paquito', 'Química'), 
 ('Unai', 'Lengua Castellana');
 
+ALTER TABLE `profesores` ADD `apellidos` VARCHAR(30) NOT NULL AFTER `nombre`;
+
 CREATE USER 'AUP'@'localhost' IDENTIFIED BY 'Abrete01';
 GRANT ALL PRIVILEGES ON adoptaunprofe.* TO 'AUP'@'localhost';
 FLUSH PRIVILEGES;
