@@ -1,7 +1,6 @@
 const request = require('supertest');
 const express = require('express');
 const router = require('../routes/services'); // Asegúrate de cambiar esto al nombre correcto de tu archivo de rutas
-
 const app = express();
 app.use(express.json());
 app.use('/', router);
@@ -32,14 +31,15 @@ describe('Router Tests', () => {
 
   // Puedes agregar más pruebas para casos como:
   // - Buscar con el input vacio:
-  text('GET /BuscarProfesorPorKeyword/:keyword devuelve el listado de todos los porfesores', async () => {
+  test('GET /BuscarProfesorPorKeyword/:keyword devuelve el listado de todos los porfesores', async () => {
     const response = await request(app).get('/BuscarProfesorPorKeyword/keyword');
 
     expect(response.status).toBe(200);
     expect(response.body.listado.length).not.toBe(0);
-  })
+  });
   // - No existen profesores con esas características
-  // - Manejo de errores en la consulta a la base de datos
+  // - Manejo de errores en la consulta a la base de datosç
+
   test('GET /BuscarProfesorPorKeyword/:keyword devuelve un listado vacío si no hay profesores que coincidan', async () => {
     // Simulamos el comportamiento de la base de datos para devolver un listado vacío
     jest.spyOn(pool, 'getConnection').mockImplementation((callback) => {
