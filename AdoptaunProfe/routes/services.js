@@ -5,7 +5,7 @@ var app = require('../app.js');
 
 /* GET home page. */
 router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
-    var select='SELECT * from profesores where UPPER(nombre) like UPPER(?) or UPPER(materia) like UPPER(?) order by nombre'
+    var select='SELECT * from profesores where UPPER(nombre) like UPPER(?) or UPPER(apellidos) like UPPER(?) or UPPER(materia) like UPPER(?) order by nombre'
     var n='%'+req.params.keyword+'%';
     //en esta funcion se guardará tanto la informacio como el logo
     app.pool.getConnection(function (err, conexion){
