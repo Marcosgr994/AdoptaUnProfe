@@ -31,6 +31,13 @@ describe('Router Tests', () => {
   });
 
   // Puedes agregar más pruebas para casos como:
+  // - Buscar con el input vacio:
+  text('GET /BuscarProfesorPorKeyword/:keyword devuelve el listado de todos los porfesores', async () => {
+    const response = await request(app).get('/BuscarProfesorPorKeyword/keyword');
+
+    expect(response.status).toBe(200);
+    expect(response.body.listado.length).not.toBe(0);
+  })
   // - No existen profesores con esas características
   // - Manejo de errores en la consulta a la base de datos
 });
