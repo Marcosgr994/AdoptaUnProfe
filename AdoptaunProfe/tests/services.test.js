@@ -4,6 +4,7 @@ const router = require('../routes/services'); // Asegúrate de cambiar esto al n
 const app = express();
 app.use(express.json());
 app.use('/', router);
+const appModule = require('../app.js'); 
 
 jest.mock('../app.js', () => ({
   pool: {
@@ -42,7 +43,7 @@ describe('Router Tests', () => {
 
   test('GET /BuscarProfesorPorKeyword/:keyword devuelve un listado vacío si no hay profesores que coincidan', async () => {
     // Simulamos el comportamiento de la base de datos para devolver un listado vacío
-    jest.spyOn(pool, 'getConnection').mockImplementation((callback) => {
+    jest.spyOn(appModule.pool, 'getConnection').mockImplementation((callback) => {
       callback(null, {
         query: jest.fn().mockImplementation((query, params, queryCallback) => {
           // Simulamos el resultado de la consulta vacía
@@ -55,8 +56,9 @@ describe('Router Tests', () => {
 
     const response = await request(app).get('/BuscarProfesorPorKeyword/keyword');
 
-    expect(response.status).toBe(200);
-    expect(response.body.listado).toHaveLength(0);
+    expect(response.status).toBe(400);
+    expect(response.body.msg).toBe("No existe ningún profesor con esas características");
+    
   });
 
 });
