@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 var datosBD = {
-    host:"localhost",
+    host:"database-1.cbu262uig8d7.eu-north-1.rds.amazonaws.com",
     user:"AUP",
     password:"Abrete01",
     database:"adoptaunprofe"
