@@ -40,4 +40,23 @@ describe('Router Tests', () => {
   })
   // - No existen profesores con esas características
   // - Manejo de errores en la consulta a la base de datos
+  test('GET /BuscarProfesorPorKeyword/:keyword devuelve un listado vacío si no hay profesores que coincidan', async () => {
+    // Simulamos el comportamiento de la base de datos para devolver un listado vacío
+    jest.spyOn(pool, 'getConnection').mockImplementation((callback) => {
+      callback(null, {
+        query: jest.fn().mockImplementation((query, params, queryCallback) => {
+          // Simulamos el resultado de la consulta vacía
+          const mockData = [];
+          queryCallback(null, mockData);
+        }),
+        release: jest.fn(),
+      });
+    });
+
+    const response = await request(app).get('/BuscarProfesorPorKeyword/keyword');
+
+    expect(response.status).toBe(200);
+    expect(response.body.listado).toHaveLength(0);
+  });
+
 });
