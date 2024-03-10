@@ -5,17 +5,30 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "Main" ]
-  pull_request:
-    branches: [ "Main" ]
+    branches:
+      - Main
+      - Dev
+      - Release
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: |
+        cd AdoptaunProfe
+        npm install
+
+    - name: Run Tests
+      run: |
+        cd AdoptaunProfe
+        npm test
