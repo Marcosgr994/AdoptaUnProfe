@@ -29,6 +29,4 @@ jobs:
         npm install
 
     - name: Run Tests
-      run: |
-        cd AdoptaunProfe
-        npm test
+      run: npm test
