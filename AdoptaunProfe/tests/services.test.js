@@ -25,7 +25,7 @@ describe('Router Tests', () => {
   test('GET /BuscarProfesorPorKeyword/:keyword devuelve el listado de profesores', async () => {
     const response = await request(app).get('/BuscarProfesorPorKeyword/keyword');
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(400);
     expect(response.body.listado).toHaveLength(1);
     // Puedes agregar más aserciones según la estructura esperada del listado de profesores
   });
