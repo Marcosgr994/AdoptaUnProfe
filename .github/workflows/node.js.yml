@@ -27,6 +27,7 @@ jobs:
       run: |
         cd AdoptaunProfe
         npm install
+        npm install --save-dev jest
 
     - name: Run Tests
       run: |
