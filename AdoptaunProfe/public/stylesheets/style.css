@@ -1,0 +1,40 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white !important;
+}
+
+div{
+  border-radius: 10px;
+}
+
+a {
+  color: #00B7FF;
+}
+/*
+.header-bg{
+  background-color: #509C9E;
+}
+*/
+.body-bg {
+  background-color: #073B3D;
+}
+
+.main-color {
+  color: #1AD0DB;
+}
+
+.main-border {
+  border-color: #0C6266;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.input-border {
+  border-color: #0C6266;
+}
+
+.btn-main-bg {
+  background-color: #1AD0DB;
+  border-color: #1AD0DB;
+}
