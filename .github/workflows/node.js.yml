@@ -41,9 +41,3 @@ jobs:
           echo "Uno o varios test han fallado. Se cancela el push."
           exit 1
         fi
-
-    - name: Push changes
-      if: success()
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
