@@ -13,7 +13,7 @@ router.get('/BuscarProfesorPorKeyword/:keyword', function(req, res, next) {
             res.status(500);
             res.json({msg: "Error al obtener la conexión en la base de datos"});
         } else{
-            conexion.query(select, [n, n], function (error, data){
+            conexion.query(select, [n,n, n], function (error, data){
 
                 if(error){
                     //nos aseguramos que la facultad exista
