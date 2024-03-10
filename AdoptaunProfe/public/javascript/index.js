@@ -1,4 +1,6 @@
-$("#Buscar").click(function(){
+document.getElementById("Buscar").addEventListener('click',obtenerProfesores);
+
+  function obtenerProfesores() {
     $.ajax({
       url: '/services/BuscarProfesorPorKeyword/' + $("#buscador").val(),
       dataType: 'json',
@@ -22,4 +24,6 @@ $("#Buscar").click(function(){
           alert(err.responseJSON.msg)
       }
   });
-  });
+  }
+
+module.exports = { obtenerProfesores};

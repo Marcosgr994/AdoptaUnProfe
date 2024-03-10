@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../routes/services'); // Asegúrate de cambiar esto al nombre correcto de tu archivo de rutas
+const router = require('../routes/services');
 const app = express();
 app.use(express.json());
 app.use('/', router);
