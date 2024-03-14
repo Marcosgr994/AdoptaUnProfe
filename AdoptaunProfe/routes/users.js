@@ -1,5 +1,12 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router();
+const DaoAlumnos=require("../DAO/DaoAlumnos");
+const multer=requiere("multer");
+const { check } = require("express-validator");
+router.use(express.json())
+//comprobar la validez del registro
+// router.post()
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
