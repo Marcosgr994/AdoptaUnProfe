@@ -18,9 +18,9 @@ ALTER TABLE `profesores` ADD `apellidos` VARCHAR(30) NOT NULL AFTER `nombre`;
 
 create table alumnos (
     id INT(10) AUTO_INCREMENT PRIMARY key,
-    nombre VARCHAR(20),
+    usuario VARCHAR(20),
     email varchar(40) UNIQUE NOT NULL,
-    contrasena varchar()
+    contrasena varchar(40)
 );
 
 
