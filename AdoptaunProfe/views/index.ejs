@@ -37,6 +37,75 @@
         </ul>
       </div>
     </div>
+
+    <div class="modal fade" id="RealizarSolicitur" data-bs-backdrop="static">
+      <!-- data-bs impide que se cierre al pulsar fuera del modal -->
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+
+              <!-- cabecera del diálogo -->
+              <div class="modal-header">
+                  <h4 class="modal-title text-center w-100">Formulario de solicitud de servicios</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <!-- cuerpo del diálogo -->
+              <div class="modal-body alert alert-secondary">
+                  <div class="container-fluid">
+
+                      <!--Form lleva a /reservar y le pasa el id en la url-->
+                      <form id="reservaForm">
+
+                          <div class="mb-3 row">
+                              <label for="TelefonoSolicitarServicio"
+                                  class="col-sm-3 col-form-label ">Telefono:</label>
+                              <div class="col-sm-9">
+                                  <input type="text" class="form-control" id="TelefonoSolicitarServicio"
+                                      name="correo" placeholder="TLF: 696 87 24 32">
+                              </div>
+                          </div>
+
+                          <div class="mb-3 row">
+                              <label class="control-label col-sm-3 "
+                                  for="fechaServicio">Fecha:</label>
+                              <div class="col-sm-9">
+                                  <input type="date" id="fechaServicio" name="fecha"
+                                      class="form-control" required>
+                              </div>
+                          </div>
+
+                          <div class="mb-3 row">
+                              <label for="horaInicioServicio" class="col-md-2 col-form-label">Hora
+                                  Inicio:</label>
+                              <div class="col-md-4">
+                                  <input type="time" class="form-control" id="horaInicioServicio"
+                                      name="horaInicioServicio" required>
+                              </div>
+                              <label for="horaFinServicio"
+                                  class="col-md-2 col-form-label text-center">Hora
+                                  Fin:</label>
+                              <div class="col-md-4">
+                                  <input type="time" class="form-control" id="horaFinServicio"
+                                      name="horaFinServicio" required>
+                              </div>
+                          </div>
+
+                          <div class="mb-3 row">
+                              <div class="offset-sm-3 col-sm-9">
+                                  <button type="submit" class="btn "
+                                      id="confirmarReserva">Confirmar</button>
+                                  <button type="button" class="btn "
+                                      data-bs-dismiss="modal">Cancelar</button>
+                              </div>
+                          </div>
+
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
     <script src="/javascript/index.js"></script>
   </body>
 </html>
