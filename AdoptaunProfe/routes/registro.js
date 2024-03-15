@@ -1,10 +1,12 @@
 var express = require('express');
 const router = express.Router();
 const DaoAlumnos=require("../DAO/DaoAlumnos");
-const multer=requiere("multer");
+const multer=require("multer");
 const { check } = require("express-validator");
+const { validationResult } = require('express-validator');
 router.use(express.json())
 const multerFactory = multer({ storage: multer.memoryStorage() });
+const daoAlumnos = new DaoAlumnos();
 //comprobar la validez del registro
 router.post("/signup",multerFactory.none(),
 [
@@ -32,15 +34,16 @@ router.post("/signup",multerFactory.none(),
    }
 
   // Procesar el registro del alumno
+  console.log("esto es mi req:",req.body);
   const { usuario, email, contrasena } = req.body;
   try {
     // Verificar si el correo electrónico ya está registrado en la base de datos
-    const alumnoExistente = await DaoAlumnos.obtenerAlumnoPorEmail(email);
+    const alumnoExistente = await daoAlumnos.obtenerAlumnoPorEmail(email);
     if (alumnoExistente) {
       return res.status(400).json({ error: "El correo electrónico ya está registrado" });
     }
     // Registrar al alumno en la base de datos
-    await DaoAlumnos.altaAlumnos({ usuario, email, contrasena });
+    await daoAlumnos.altaAlumnos({ usuario, email, contrasena });
     res.status(201).json({ mensaje: "Alumno registrado exitosamente" });
   } catch (error) {
     console.error("Error al registrar alumno:", error);
@@ -51,8 +54,12 @@ router.post("/signup",multerFactory.none(),
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/signup', function(req, res, next) {
+  //res.send('respond with a resource');
+  res.render('registro.ejs');
 });
+// router.get('/signup', (req, res) => {
+//   res.render('signup');
+// });
 
 module.exports = router;

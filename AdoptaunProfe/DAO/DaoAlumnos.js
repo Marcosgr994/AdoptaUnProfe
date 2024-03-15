@@ -6,8 +6,8 @@ class DaoAlumnos extends DaoAdoptaUnProfe{
     async altaAlumnos(alumnos){
         //comprobar que llega
       console.log(alumnos);  
-      const sql="INSERT INTO alumnos(nombre,email,contrasena) VALUES(?,?,?)";
-      return this.query(sql,[alumnos.nombre,alumnos.email,alumnos.contrasena]);
+      const sql="INSERT INTO alumnos(usuario,email,contrasena) VALUES(?,?,?)";
+      return this.query(sql,[alumnos.usuario,alumnos.email,alumnos.contrasena]);
     }
 
     // Obtener alumno por correo electrónico
