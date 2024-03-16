@@ -25,7 +25,7 @@ describe('POST /signup',()=>{
             contrasena: "1234alberto",
             contrasena_repetida: "1234alberto"
         };
-        // Simular la solicitud POST al endpoint de registro
+        // Simulando la solicitud POST
         const response = await request(app)
         .post('/signup')
         .send(newAlumnos);
@@ -54,12 +54,12 @@ describe('POST /signup',()=>{
             contrasena_repetida: 'existingpassword'
         };
     
-        // Simular la solicitud POST al endpoint de registro
+        // Simulando la solicitud POST 
         const response = await request(app)
             .post('/signup')
             .send(alumno);
     
-        // Comprobar que la respuesta tiene el código de estado esperado
+        // Comprobar que la respuesta tiene el error 400
         expect(response.status).toBe(400);
     
         // Comprobar que la respuesta contiene el mensaje de error esperado
