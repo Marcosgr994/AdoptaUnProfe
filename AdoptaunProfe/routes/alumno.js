@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var app = require('../app.js');
 
 /* GET users listing. */
 router.get('/solicitudes', function(req, res, next) {
@@ -7,12 +8,12 @@ router.get('/solicitudes', function(req, res, next) {
 });
 
 router.get('/solicitudes/:usuario', function(req, res, next) {
-  res.render('solicitudesAlumno', { title: 'Solicitudes del alumno' });
+
   var select = 'SELECT p.nombre, p.apellidos, s.estado'
-  +'FROM profesores p'
-  +'INNER JOIN solicitudes s ON p.id = s.IdProfesor'
-  +'WHERE s.idAlumno = ?;';
-  var n='%'+req.params.usuario+'%';
+  +' FROM profesores p'
+  +' INNER JOIN solicitudes s ON p.id = s.IdProfesor'
+  +' WHERE s.idAlumno = ?'
+  var n=req.params.usuario;
   //Comprobamos la conexion
   app.pool.getConnection(function (err, conexion){
       if(err){
