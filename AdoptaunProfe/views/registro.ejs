@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h1>Registro de Usuario</h1>
+    <form action="/users/signup" method="POST">
+        <label for="usuario">Usuario:</label><br>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+
+        <label for="email">Correo electrónico:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="contrasena">Contraseña:</label><br>
+        <input type="password" id="contrasena" name="contrasena" minlength="8" maxlength="24" required><br><br>
+
+        <label for="contrasena_repetida">Repetir Contraseña:</label><br>
+        <input type="password" id="contrasena_repetida" name="contrasena_repetida" minlength="8" maxlength="24" required><br><br>
+
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
