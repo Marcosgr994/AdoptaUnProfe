@@ -10,9 +10,9 @@ var db = require('./database');
 // var DaoAlumnos = require('./DAO/DaoAlumnos');
 //Database
 
-// module.exports = {
-//   pool: db.pool,
-// };
+module.exports = {
+  pool: db.pool,
+};
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/registro');

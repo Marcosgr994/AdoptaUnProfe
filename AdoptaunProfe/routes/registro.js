@@ -29,6 +29,7 @@ router.post("/signup", multerFactory.none(), [
 
     // Validación de repetición de contraseña
     check("contrasena_repetida").custom((value, { req }) => {
+        console.log("requerimiento: ",req.body);
         if (value !== req.body.contrasena) {
             throw new Error("Las contraseñas no coinciden");
         }
