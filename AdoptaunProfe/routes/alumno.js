@@ -9,10 +9,9 @@ router.get('/solicitudes', function(req, res, next) {
 router.get('/solicitudes/:usuario', function(req, res, next) {
   res.render('solicitudesAlumno', { title: 'Solicitudes del alumno' });
   var select = 'SELECT p.nombre, p.apellidos, s.estado'
-  +'FROM Profesores p'
+  +'FROM profesores p'
   +'INNER JOIN solicitudes s ON p.id = s.IdProfesor'
   +'WHERE s.idAlumno = ?;';
-  var select='SELECT * from profesores where UPPER(nombre) like UPPER(?) or UPPER(apellidos) like UPPER(?) or UPPER(materia) like UPPER(?) order by nombre'
   var n='%'+req.params.usuario+'%';
   //Comprobamos la conexion
   app.pool.getConnection(function (err, conexion){
