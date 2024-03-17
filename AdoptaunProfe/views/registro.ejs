@@ -1,26 +1,43 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
-</head>
-<body>
-    <h1>Registro de Usuario</h1>
-    <form action="/users/signup" method="POST">
-        <label for="usuario">Usuario:</label><br>
-        <input type="text" id="usuario" name="usuario" required><br><br>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroModal">
+    Registrar
+</button>
 
-        <label for="email">Correo electrónico:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+<!-- Modal -->
+<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h5 class="modal-title" id="registroModalLabel">Registro de Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body body-bg">
+                <form id="registroForm" action="/signup" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nombre de Usuario:</label>
+                        <input type="text" class="form-control" id="username" name="username" required
+                            pattern="^[a-zA-Z0-9]+$" title="El usuario solo puede contener letras y números" oninput="validarRegistro()">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="email" name="email" required oninput="validarRegistro()">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="password" name="password" minlength="8"
+                            maxlength="24" title="La contraseña debe tener entre 8 y 24 caracteres" oninput="validarRegistro()">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Repetir Contraseña:</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                            required oninput="validarRegistro()">
+                        <div id="confirm_password_error" style="color: rgb(248, 131, 131);"></div>
+                    </div>
+                    <button type="submit" disabled class="btn btn-primary " id="confirm_sign_up">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascript/signup.js"></script>
 
-        <label for="contrasena">Contraseña:</label><br>
-        <input type="password" id="contrasena" name="contrasena" minlength="8" maxlength="24" required><br><br>
-
-        <label for="contrasena_repetida">Repetir Contraseña:</label><br>
-        <input type="password" id="contrasena_repetida" name="contrasena_repetida" minlength="8" maxlength="24" required><br><br>
-
-        <button type="submit">Registrarse</button>
-    </form>
-</body>
-</html>

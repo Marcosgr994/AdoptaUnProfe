@@ -11,6 +11,7 @@ $("#Buscar").click(function(){
             html += "<div class='card-body'>\n";
             html += "<div class='card-title'><h3 class= 'h3'>Nombre: "+element.nombre + element.apellidos + "</h3></div>\n";
             html += "<div class='card-text'><h4 class= 'h4'>Materia: "+element.materia+"</h4></div>\n";
+            html += "<button id='RealizarSolicitud' class='btn btn-primary'>Realizar solicitud</button>";
             html += "</div>\n";
             html += "</div>\n";
           });
@@ -23,3 +24,5 @@ $("#Buscar").click(function(){
       }
   });
   });
+
+  
