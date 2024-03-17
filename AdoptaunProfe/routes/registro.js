@@ -61,7 +61,7 @@ router.post("/signup", multerFactory.none(), [
 });
 
 router.get('/signup', function (req, res, next) {
-    res.render('registro.ejs');
+    res.render('registro', {title: 'Registro'});
 });
 
 module.exports = router;
