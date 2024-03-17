@@ -10,7 +10,7 @@ const daoAlumnos = new DaoAlumnos();
 
 router.post("/signup", multerFactory.none(), [
     // Validación del nombre de usuario
-    check("usuario").isAlphanumeric().withMessage("El usuario debe contener solo letras y números"),
+    check("username").isAlphanumeric().withMessage("El usuario debe contener solo letras y números"),
 
     // Validación email
     check("email").isEmail().withMessage("El correo electrónico no es válido")
@@ -25,11 +25,11 @@ router.post("/signup", multerFactory.none(), [
     }),
 
     // Validación de la contraseña
-    check("contrasena").isLength({ min: 8, max: 24 }).withMessage("La contraseña debe tener entre 8 y 24 caracteres"),
+    check("password").isLength({ min: 8, max: 24 }).withMessage("La contraseña debe tener entre 8 y 24 caracteres"),
 
     // Validación de repetición de contraseña
-    check("contrasena_repetida").custom((value, { req }) => {
-        if (value !== req.body.contrasena) {
+    check("confirm_password").custom((value, { req }) => {
+        if (value !== req.body.password) {
             throw new Error("Las contraseñas no coinciden");
         }
         return true;
@@ -44,7 +44,7 @@ router.post("/signup", multerFactory.none(), [
     }
 
     // Procesar el registro del alumno
-    const { usuario, email, contrasena } = req.body;
+    const { username: usuario, email,password: contrasena } = req.body;
     try {
         // Verificar si el correo electrónico ya está registrado en la base de datos
         const alumnoExistente = await daoAlumnos.obtenerAlumnoPorEmail(email);
