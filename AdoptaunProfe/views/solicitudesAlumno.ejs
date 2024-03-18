@@ -18,18 +18,24 @@
   
       <div class="col-sm-8 text-center">
         <h1 id="Titulo" class="textoCabecera d-flex align-items-center justify-content-center mt-3">
-          <%= title %>      
+          <%= title %>
         </h1>
       </div>
     </header>
     
     <div class="bg-light m-auto pt-3 row container-fluid">
+      <div class="col-md-3 col-12">
+        <input type="text" id="buscador" class="form-control input-border" placeholder="Introduce un parámetro de búsqueda">
+      </div>
+      <div class="col-md-2 col-12">
+        <button id="Buscar" class="btn btn-primary">Buscar profesor <i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
       <div class="py-5">
         <ul id="lista">
   
         </ul>
       </div>
     </div>
-    <script src="/javascript/index.js"></script>
+    <script src="/javascript/solicitudesAlumno.js"></script>
   </body>
 </html>
