@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app.js');
 
+const daoAlumnos = new DaoAlumnos();
+const daoProfesores = new DaoProfesores();
+const daoSolicitudes = new DaoSolicitudes();
+
 
 /* GET home page. */
 router.get('/BuscarProfesorPorKeyword/:keyword', function (req, res, next) {
@@ -63,74 +67,46 @@ router.get('/BuscarProfesorPorKeyword/', function (req, res, next) {
   })
 });
 
+router.get('/SolicitarServicioAUnProfesor', function(req, res, next) {
+  res.render('SolicitarServicioAUnProfesor', { title: 'Solicitar servicio a un profesor' });
+});
 
-router.get('/SolicitarServicioAUnProfesor', (req, res, next) => {
-  // Se estable la conexion a la BBDD
-  app.pool.getConnection((err, conexion) => {
-    // Si hay error se avisa
-    if (err) {
-      res.status(500);
-      res.json({ msg: "Error al obtener la conexión con la base de datos" });
-    } else {
+router.post('/SolicitarServicioAUnProfesor', async (req, res, next) => {
+  try {
+    // Se guardan los datos enviados por el alumno
+    const { fecha, horaInicio, telefono, materia, mailProfesor, mailAlumno } = req.body;
 
-      // Se guardan los datos enviados por el alumno
-      const { fecha, horaInicio, telefono, materia, mailProfesor, mailAlumno } = req.body;
-
-      // Se validan los datos enviados por el alumno
-      if (!fecha || !validarFecha(fecha)) {
+    // Se validan los datos enviados por el alumno
+    if (!fecha || !validarFecha(fecha)) {
         return res.status(400).send('Fecha incorrecta.');
-      }
-      if (!horaInicio || isNaN(horaInicio) || horaInicio < 9 || horaInicio > 22) {
+    }
+    if (!horaInicio || isNaN(horaInicio) || horaInicio < 9 || horaInicio > 22) {
         return res.status(400).send('Hora de inicio incorrecta.');
-      }
-      if (!telefono || isNaN(telefono) || telefono.length !== 9) {
+    }
+    if (!telefono || isNaN(telefono) || telefono.length !== 9) {
         return res.status(400).send('Teléfono incorrecto.');
-      }
-      if (!materia || materia.length > 25) {
+    }
+    if (!materia || materia.length > 25) {
         return res.status(400).send('La longitud del campo "materia" es muy largo, intenta recortarlo');
-      }
-      const queryIdProfesor = `SELECT * FROM profesores WHERE correo = ${mailProfesor}`;
-      const queryIdAlumno = `SELECT * FROM alumnos WHERE correo = ${mailAlumno}`;
-      let idProfesor, idAlumno;
-      conexion.query(queryIdProfesor, (errProfesor, data) => {
-        if (errProfesor) {
-          conexion.release();
-          res.status(500);
-          res.json({ msg: "error al realizar la consulta a la base de datos" });
-        } else {
-          idProfesor = data[0];
-          res.status(200);
-        }
-      })
-      conexion.query(queryIdAlumno, (errAlumno, data) => {
-        if (errAlumno) {
-          conexion.release();
-          res.status(500);
-          res.json({ msg: "error al realizar la consulta a la base de datos" });
-        } else {
-          idAlumno = data[0];
-          res.status(200);
-        }
-      })
-      // Aquí puedes almacenar la solicitud en una base de datos o enviarla por correo electrónico al profesor correspondiente
-      const insertIntoServicios = `INSERT INTO servicios (id_profesor, id_alumno, fecha, hora_inicio, telefono, materia) VALUES (${idProfesor}, ${idAlumno}, ${fecha}, ${horaInicio}, ${telefono}, ${materia})`;
-      conexion.insert(insertIntoServicios, (errInsert, data) => {
-        if (errInsert) {
-          conexion.release();
-          res.status(500);
-          res.json({ msg: "error al realizar la insercion a la base de datos" });
-        } else {
-          res.status(200);
-          res.json({ msg: "Solicitud almacenada correctamente" })
-        }
-      })
-      // En este ejemplo, simplemente responderemos con un mensaje de éxito
-      res.send('Solicitud enviada correctamente.');
     }
 
-  })
-  // Se llama a next para que otro middleware pueda ejecutarse segun el evento que se produzca
-  next();
+    const alumno = await daoAlumnos.obtenerAlumnoPorEmail(mailAlumno);
+    if (!alumno) {
+        return res.status(400).send('Alumno no encontrado');
+    }
+
+    const profesor = await daoProfesores.obtenerProfesorPorEmail(mailProfesor);
+    if (!profesor) {
+        return res.status(400).send('Profesor no encontrado');
+    }
+
+    await daoSolicitudes.altaSolucitud(profesor.id, alumno.id, fecha, horaInicio, telefono, materia);
+
+    res.status(200).json({ msg: "Solicitud almacenada correctamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error interno del servidor" });
+  }
 })
 
 function validarFecha(fecha) {
