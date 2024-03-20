@@ -1,4 +1,4 @@
-const DaoAdoptaUnProfe = require("./DAOAdoptaUnProfe")
+const DaoAdoptaUnProfe = require("../DAO/DaoAdoptaUnProfe")
 
 class DaoAlumnos extends DaoAdoptaUnProfe{
 
