@@ -35,7 +35,7 @@ describe('POST /signup',()=>{
         expect(response.body).toHaveProperty('mensaje', 'Alumno registrado exitosamente');
     });
 
-    test('debería devolver un error si el correo electrónico ya está registrado', async () => {
+    test('debería devolver un error si el correo electrónico es invalido', async () => {
         // Mockear el comportamiento de la base de datos
         const mockDaoAlumnos = {
             obtenerAlumnoPorEmail: jest.fn().mockReturnValue({}), // Simula que el correo está registrado
