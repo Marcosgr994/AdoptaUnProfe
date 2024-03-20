@@ -20,8 +20,16 @@ a {
   background-color: #073B3D;
 }
 
+.modal-body-bg{
+  background-color: #073B3D;
+  border-top-left-radius: initial;
+  border-top-right-radius: initial;
+}
+
 .modal-header-bg{
   background-color: #032324;
+  border-bottom-left-radius: initial;
+  border-bottom-right-radius: initial;
 }
 
 .main-color {
