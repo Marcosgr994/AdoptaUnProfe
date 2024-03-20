@@ -2,7 +2,7 @@ const DaoAdoptaUnProfe = require("./DaoAdoptaUnProfe")
 
 class DaoSolicitudes extends DaoAdoptaUnProfe{
 
-    //ALta Solicitud
+    //ALta Solicitud (create)
     async altaSolucitud(alumnos){
         //comprobar que llega
       console.log(idProfesor, idAlumno, fecha, horaInicio, telefono, materia);  
@@ -10,7 +10,7 @@ class DaoSolicitudes extends DaoAdoptaUnProfe{
       return this.query(sql,[idProfesor, idAlumno, fecha, horaInicio, telefono, materia]);
     }
 
-    // Obtener solicitud por id de alumno
+    // Obtener solicitud por id de alumno (ReadById)
     async obtenerSolicitudPorId(idAlumno) {
       const sql = 'SELECT p.nombre, p.apellidos, s.estado'
       +' FROM profesores p'
