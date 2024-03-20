@@ -20,10 +20,10 @@ describe('POST /signup',()=>{
 
         //ingresando un alumno ficticio
         const newAlumnos={
-            usuario: 'alberto',
+            username: 'alberto',
             email: 'test123@xyz.com',
-            contrasena: "1234alberto",
-            contrasena_repetida: "1234alberto"
+            password: "1234alberto",
+            confirm_password: "1234alberto"
         };
         // Simulando la solicitud POST
         const response = await request(app)
@@ -48,10 +48,10 @@ describe('POST /signup',()=>{
     
         // Datos del alumno con un correo electrónico que ya está registrado
         const alumno = {
-            usuario: 'existinguser',
+            username: 'existinguser',
             email: 'existing@example.jp',
-            contrasena: 'existingpassword',
-            contrasena_repetida: 'existingpassword'
+            password: 'existingpassword',
+            confirm_password: 'existingpassword'
         };
     
         // Simulando la solicitud POST 
