@@ -20,16 +20,11 @@ a {
   background-color: #073B3D;
 }
 
-.modal-body-bg{
-  background-color: #073B3D;
-  border-top-left-radius: initial;
-  border-top-right-radius: initial;
-}
-
 .modal-header-bg{
   background-color: #032324;
   border-bottom-left-radius: initial;
   border-bottom-right-radius: initial;
+  --bs-modal-header-border-width: 0;
 }
 
 .main-color {
@@ -46,7 +41,15 @@ a {
   border-color: #0C6266;
 }
 
+#confirm_password_error {
+  color: #f05656;
+}
+
 .btn-main-bg {
   background-color: #1AD0DB;
   border-color: #1AD0DB;
+}
+
+.modal-content {
+  background-color: #073B3D !important;
 }
