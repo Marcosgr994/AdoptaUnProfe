@@ -6,7 +6,8 @@ const { check, validationResult } = require("express-validator");
 
 router.use(express.json());
 const multerFactory = multer({ storage: multer.memoryStorage() });
-const daoAlumnos = new DaoAlumnos();
+var db = require("../database");
+const daoAlumnos = new DaoAlumnos(db.pool);
 
 router.post("/signup", multerFactory.none(), [
     // Validación del nombre de usuario
