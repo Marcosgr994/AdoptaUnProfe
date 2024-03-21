@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app.js');
 
+var DaoAlumnos = require('../DAO/DaoAlumnos.js');
+var DaoProfesores = require('../DAO/DaoProfesores.js');
+var DaoSolicitudes = require('../DAO/DaoSolicitudes.js');
+
+
 const daoAlumnos = new DaoAlumnos();
 const daoProfesores = new DaoProfesores();
 const daoSolicitudes = new DaoSolicitudes();
