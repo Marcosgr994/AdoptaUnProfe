@@ -56,3 +56,8 @@ http.createServer(app).listen(80, function (err){
       console.log("Servidor iniciado correctamente");
   }
 });
+
+module.exports = {
+  pool: db.pool,
+  app: app
+};

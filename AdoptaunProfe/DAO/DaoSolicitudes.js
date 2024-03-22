@@ -3,10 +3,10 @@ const DaoAdoptaUnProfe = require("./DaoAdoptaUnProfe")
 class DaoSolicitudes extends DaoAdoptaUnProfe{
 
     //ALta Solicitud (create)
-    async altaSolucitud(alumnos){
+    async altaSolucitud(idProfesor, idAlumno, fecha, horaInicio, telefono, materia){
         //comprobar que llega
       console.log(idProfesor, idAlumno, fecha, horaInicio, telefono, materia);  
-      const sql="INSERT INTO servicios (id_profesor, id_alumno, fecha, hora_inicio, telefono, materia) VALUES (?,?,?,?,?,?)";
+      const sql="INSERT INTO solicitudes (idProfesor, idAlumno, fecha, hora_inicio, telefono, materia) VALUES (?,?,?,?,?,?)";
       return this.query(sql,[idProfesor, idAlumno, fecha, horaInicio, telefono, materia]);
     }
 
