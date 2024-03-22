@@ -19,7 +19,7 @@ describe('Test de integración de solicitud de servicio y listado', () => {
                 fecha: '22/02/2022',
                 horaInicio: 10,
                 telefono: '123456789',
-                materia: 'Matemáticas',
+                materia: profesor.materia,
                 mailProfesor: profesor.email,
                 mailAlumno: 'demo1@gmail.com'
             });
