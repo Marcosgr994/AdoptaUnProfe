@@ -6,8 +6,8 @@ app.use(express.json())
 app.use('/', router)
 const appModule = require('../../app.js')
 // rutas de DAOs necesarias para ejecutar los test
-const DaoAlumnos = require('../../DAO/DaoAlumnos')
-const DaoProfesores = require('../../DAO/DaoProfesores')
+// const DaoAlumnos = require('../../DAO/DaoAlumnos')
+// const DaoProfesores = require('../../DAO/DaoProfesores')
 const DaoSolicitudes = require('../../DAO/DaoSolicitudes')
 
 jest.mock('../../app.js', () => ({
@@ -25,26 +25,26 @@ jest.mock('../../app.js', () => ({
 describe('Test aceptar una solicitud de un alumno', () => {
 
   // Mocks para simular los DAOs
-  const mockDaoAlumnos = {
-    obtenerAlumnoPorEmail: jest.fn().mockReturnValue({ // Simula un alumno en la base de datos
-      usuario: 'Alumno',
-      email: 'alumno@example.com',
-      contrasena: 'contraseña'
-    }),
+  // const mockDaoAlumnos = {
+  //   obtenerAlumnoPorEmail: jest.fn().mockReturnValue({ // Simula un alumno en la base de datos
+  //     usuario: 'Alumno',
+  //     email: 'alumno@example.com',
+  //     contrasena: 'contraseña'
+  //   }),
 
-    alumnoNoEncontrado: jest.fn().mockReturnValue(null) // Simula un alumno que no existe
-  }
+  //   alumnoNoEncontrado: jest.fn().mockReturnValue(null) // Simula un alumno que no existe
+  // }
 
-  const mockDaoProfesores = { // Simula un profesor en la base de datos
-    obtenerProfesorPorEmail: jest.fn().mockReturnValue({
-      nombre: 'Profesor',
-      apellidos: 'Prueba',
-      materia: 'Matemáticas',
-      mailProfesor: 'profesor@example.com'
-    }),
+  // const mockDaoProfesores = { // Simula un profesor en la base de datos
+  //   obtenerProfesorPorEmail: jest.fn().mockReturnValue({
+  //     nombre: 'Profesor',
+  //     apellidos: 'Prueba',
+  //     materia: 'Matemáticas',
+  //     mailProfesor: 'profesor@example.com'
+  //   }),
 
-    profesorNoEncontrado: jest.fn().mockReturnValue(null)// Simula un profesor que no existe
-  }
+  //   profesorNoEncontrado: jest.fn().mockReturnValue(null)// Simula un profesor que no existe
+  // }
 
   const mockDaoSolicitudes = {
     altaSolucitud: jest.fn().mockResolvedValue() // Simula la inserción (promesa) exitosa de la solicitud en la BD
