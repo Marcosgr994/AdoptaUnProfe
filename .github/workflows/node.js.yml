@@ -17,6 +17,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      myapp:
+        ports:
+          - 80:80
+
     env:  # Definición de la variable de entorno global
       NGROK_URL: ${{ steps.ngrok.outputs.ngrok_url }}
 
