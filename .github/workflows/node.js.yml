@@ -17,9 +17,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      ports:
-          - 80:80
+    env:  # Definición de la variable de entorno global
+      NGROK_URL: ${{ steps.ngrok.outputs.ngrok_url }}
+
     steps:
     - name: Realizamos Checkout
       uses: actions/checkout@v2
@@ -34,6 +34,18 @@ jobs:
         cd AdoptaunProfe
         npm install
         npm install --save-dev jest
+
+    - name: Iniciar ngrok y capturar la URL
+      id: ngrok
+      run: |
+        ./ngrok http 80 > ngrok_output.txt &
+        sleep 10 # Espera un momento para que ngrok esté listo
+
+    - name: Extraer URL de ngrok y almacenarla en una variable de entorno
+      run: |
+        NGROK_URL=$(grep -oE 'http://[a-z0-9]+\.ngrok\.io' ngrok_output.txt)
+        echo "URL de ngrok: $NGROK_URL"
+        echo "::set-env name=NGROK_URL::$NGROK_URL"  # Almacena la URL en una variable de entorno global
 
     - name: Ejecutar Tests
       run: |
