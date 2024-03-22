@@ -1,5 +1,5 @@
 
-const DaoAdoptaUnProfe = require('./DaoAdoptaUnProfe.js')
+const DaoAdoptaUnProfe = require('./DaoAdoptaUnProfe')
 
 class DaoSolicitud extends DaoAdoptaUnProfe {
   //ALta Solicitud (create)
