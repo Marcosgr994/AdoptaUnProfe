@@ -78,19 +78,19 @@ describe('Test aceptar una solicitud de un alumno', () => {
   })
 
   // Test criterios de aceptacion
-  test('Profesor ha recibido alguna solicitud', async() => {
+  test('Profesor ha recibido alguna solicitud', async () => {
     const res = await request(app)
-      .post('/reservar')
+      .post('/solicitudes/aceptarSolicitud')
       .send(mockSolicitud)
 
-      expect(res.status).toBe(200)
-      expect(res.body.msg).toBe('Solicitud aceptada correctamente')
+    expect(res.status).toBe(200)
+    expect(res.body.msg).toBe('Solicitud aceptada correctamente')
   })
-  test('Profesor no ha recibido ninguna solicitud', async() => {
+  test('Profesor no ha recibido ninguna solicitud', async () => {
     const res = await request(app)
       .post('/reservar')
       .send(null)
 
-      expect(res.status).toBe(404)
+    expect(res.status).toBe(404)
   })
 })
