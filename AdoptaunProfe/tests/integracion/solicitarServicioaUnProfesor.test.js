@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require('../../app');
 
+
 describe('Test de integración de solicitud de servicio y listado', () => {
     test('Buscar profesor por palabra clave y hacer una solicitud de servicio', async () => {
         // Realizar la solicitud para buscar un profesor por palabra clave
