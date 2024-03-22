@@ -51,24 +51,24 @@ describe('Test aceptar una solicitud de un alumno', () => {
   }
 
   // Mocks para simular las solicitudes recibidas
-  const mockSolicitud1 = {
+  const mockSolicitud = {
     fecha: '21/02/2023',
     horaInicial: 15,
     telefono: '123654789',
     materia: 'Aplicaciones Web'
   }
-  const mockSolicitud2 = {
-    fecha: '22/02/2023',
-    horaInicial: 9,
-    telefono: '654987321',
-    materia: 'Estructuras de Datos'
-  }
-  const mockSolicitud3 = {
-    fecha: '23/02/2023',
-    horaInicial: 22,
-    telefono: '987654654',
-    materia: 'Ingenieria del Software'
-  }
+  // const mockSolicitud2 = {
+  //   fecha: '22/02/2023',
+  //   horaInicial: 9,
+  //   telefono: '654987321',
+  //   materia: 'Estructuras de Datos'
+  // }
+  // const mockSolicitud3 = {
+  //   fecha: '23/02/2023',
+  //   horaInicial: 22,
+  //   telefono: '987654654',
+  //   materia: 'Ingenieria del Software'
+  // }
 
   // SE REPITE EN CADA TEST (los daos usan los mock como base de datos)-------------------------------------
   beforeEach(() => {
@@ -80,10 +80,17 @@ describe('Test aceptar una solicitud de un alumno', () => {
   // Test criterios de aceptacion
   test('Profesor ha recibido alguna solicitud', async() => {
     const res = await request(app)
-      .post('/AceptarUnaSolicitudDeUnAlumno')
-      .send(mockSolicitud1)
+      .post('/reservar')
+      .send(mockSolicitud)
 
       expect(res.status).toBe(200)
       expect(res.body.msg).toBe('Solicitud aceptada correctamente')
+  })
+  test('Profesor no ha recibido ninguna solicitud', async() => {
+    const res = await request(app)
+      .post('/reservar')
+      .send(null)
+
+      expect(res.status).toBe(404)
   })
 })
