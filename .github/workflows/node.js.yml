@@ -32,17 +32,6 @@ jobs:
         npm install
         npm install --save-dev jest
 
-    - name: Iniciar ngrok y capturar la URL
-      id: ngrok
-      run: |
-        ./ngrok http 80 > ngrok_output.txt &
-        sleep 10 # Espera un momento para que ngrok esté listo
-
-    - name: Extraer URL de ngrok y almacenarla en un archivo
-      run: |
-        ngrok_url=$(grep -oE 'http://[a-z0-9]+\.ngrok\.io' ngrok_output.txt)
-        echo "NGROK_URL=$ngrok_url" >> $GITHUB_ENV
-
     - name: Ejecutar Tests
       run: |
         cd AdoptaunProfe

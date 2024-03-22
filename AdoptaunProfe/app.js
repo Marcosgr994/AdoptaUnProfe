@@ -7,6 +7,16 @@ var http = require('http');
 
 var db = require('./database');
 
+//puerto
+
+let port = 80;
+
+// Verificar si se está ejecutando en GitHub Actions
+if (process.env.GITHUB_ACTIONS === 'true') {
+    // Cambiar el puerto si se está ejecutando en GitHub Actions
+    port = 3000;
+}
+
 //Database
 
 module.exports = {
@@ -49,7 +59,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-http.createServer(app).listen(80, function (err){
+http.createServer(app).listen(port, function (err){
   if(err){
       console.error("Se ha producido un error al iniciar el servidor: " + err.message);
   } else {
