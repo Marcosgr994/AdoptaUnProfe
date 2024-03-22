@@ -17,6 +17,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      ports:
+          - 80:80
     steps:
     - name: Realizamos Checkout
       uses: actions/checkout@v2
