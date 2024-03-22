@@ -12,23 +12,23 @@ describe("Test de Integracion para Obtener Alumno por Correo Electrónico", () =
         contrasena: '12345juan',
     };
 
-    // Antes de todas las pruebas, asegúrate de que el alumno de prueba esté en la base de datos
+    // Antes de todas las pruebas
     beforeAll(async () => {
         await dao.query(`INSERT INTO alumnos (usuario, email, contrasena) VALUES (?, ?, ?)`, [alumnoPrueba.usuario, alumnoPrueba.email, alumnoPrueba.contrasena]);
     });
 
-    // Después de todas las pruebas, elimina el alumno de prueba de la base de datos
+    // Después de todas las pruebas
     afterAll(async () => {
         await dao.query(`DELETE FROM alumnos WHERE email = ?`, [alumnoPrueba.email]);
         await db.pool.end();
     });
 
-    // Prueba para obtener un alumno por su correo electrónico
+    // Prueba para obtener un alumno por email
     test("obtener un alumno por su correo electrónico", async () => {
         // Realiza la llamada al método para obtener el alumno por su correo electrónico
         const result = await dao.obtenerAlumnoPorEmail(alumnoPrueba.email);
 
-        // Comprueba que el resultado no sea nulo y coincida con el alumno de prueba
+        // Comprobar resultado
         expect(result).toBeDefined();
         expect(result).toEqual(expect.objectContaining({
             usuario: alumnoPrueba.usuario,
