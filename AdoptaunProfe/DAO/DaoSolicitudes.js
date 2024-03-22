@@ -1,7 +1,7 @@
 
 const DaoAdoptaUnProfe = require('./DaoAdoptaUnProfe')
 
-class DaoSolicitud extends DaoAdoptaUnProfe {
+class DaoSolicitud extends DaoAdoptaUnProfe{
   //ALta Solicitud (create)
   async altaSolucitud(idProfesor, idAlumno, fecha, horaInicio, telefono, materia) {
     //comprobar que llega

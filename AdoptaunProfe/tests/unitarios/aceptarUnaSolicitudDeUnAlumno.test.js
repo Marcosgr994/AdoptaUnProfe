@@ -47,7 +47,7 @@ describe('Test aceptar una solicitud de un alumno', () => {
   // }
 
   const mockDaoSolicitudes = {
-    actualizarSolucitud: jest.fn().mockResolvedValue() // Simula la inserción (promesa) exitosa de la solicitud en la BD
+    altaSolucitud: jest.fn().mockResolvedValue() // Simula la inserción (promesa) exitosa de la solicitud en la BD
   }
 
   // Mocks para simular las solicitudes recibidas
@@ -71,11 +71,11 @@ describe('Test aceptar una solicitud de un alumno', () => {
   // }
 
   // SE REPITE EN CADA TEST (los daos usan los mock como base de datos)-------------------------------------
-  beforeEach(() => {
-    // DaoAlumnos.prototype.obtenerAlumnoPorEmail = mockDaoAlumnos.obtenerAlumnoPorEmail
-    // DaoProfesores.prototype.obtenerProfesorPorEmail = mockDaoProfesores.obtenerProfesorPorEmail
-    DaoSolicitudes.prototype.actualizarSolucitud = mockDaoSolicitudes.actualizarSolucitud
-  })
+  // beforeEach(() => {
+  //   // DaoAlumnos.prototype.obtenerAlumnoPorEmail = mockDaoAlumnos.obtenerAlumnoPorEmail
+  //   // DaoProfesores.prototype.obtenerProfesorPorEmail = mockDaoProfesores.obtenerProfesorPorEmail
+  //   DaoSolicitudes.prototype.altaSolucitud = mockDaoSolicitudes.altaSolucitud
+  // })
 
   // Test criterios de aceptacion
   test('Profesor ha recibido alguna solicitud', async () => {
