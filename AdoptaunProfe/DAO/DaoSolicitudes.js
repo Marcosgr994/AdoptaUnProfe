@@ -1,11 +1,14 @@
+
 const DaoAdoptaUnProfe = require('./DAOAdoptaUnProfe.js')
 
 class DaoSolicitud extends DaoAdoptaUnProfe {
-  // Guardar la solicitud en la BBDD
-  async altaSolicitud (solicitud) {
-    const sql = 'INSERT INTO solicitudes(emailProfesor, emailAlumno, fecha) VALUES (?, ?, ?)'
-    return this.query(sql, [solicitud.emailProfesor, solicitud.emailAlumno, solicitud.fecha])
-  }
+    //ALta Solicitud (create)
+    async altaSolucitud(idProfesor, idAlumno, fecha, horaInicio, telefono, materia){
+        //comprobar que llega
+      console.log(idProfesor, idAlumno, fecha, horaInicio, telefono, materia);  
+      const sql="INSERT INTO solicitudes (idProfesor, idAlumno, fecha, hora_inicio, telefono, materia) VALUES (?,?,?,?,?,?)";
+      return this.query(sql,[idProfesor, idAlumno, fecha, horaInicio, telefono, materia]);
+    }
 
   async actualizarSolicitud (solicitud) {
     const sql = 'UPDATE solicitudes SET estado = ? WHERE idProfesor = ? AND idAlumno = ? AND fecha = ? AND horaInicio = ? AND materia = ? AND telefono = ?'
