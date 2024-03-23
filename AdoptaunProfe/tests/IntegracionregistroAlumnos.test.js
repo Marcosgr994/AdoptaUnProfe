@@ -7,9 +7,9 @@ describe("Test de Integracion para Obtener Alumno por Correo Electrónico", () =
 
     // Datos de prueba
     const alumnoPrueba = {
-        usuario: 'juan123',
-        email: 'juan@example.com',
-        contrasena: '12345juan',
+        usuario: 'juan1234',
+        email: 'juan1@example.com',
+        contrasena: '123456juan',
     };
 
     // Antes de todas las pruebas
