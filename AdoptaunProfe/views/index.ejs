@@ -21,6 +21,69 @@
           <%= title %>      
         </h1>
       </div>
+      <div class="col-sm-2 ">
+
+       
+            <button type="button" class="btn botonInicioSesion mt-3" data-bs-toggle="modal"
+              data-bs-target="#InicioSesion">Iniciar Sesión </button>
+          
+  
+      </div>
+  
+      <!--Cuadro Modal inicio de Sesion-->
+  
+      <div class="modal fade" id="InicioSesion" data-bs-backdrop="static">
+        <!-- data-bs impide que se cierre al pulsar fuera del modal -->
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+  
+            <!-- cabecera del diálogo -->
+            <div class="modal-header body-bg">
+              <h4 class="modal-title">Inicio de Sesión</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+  
+            <!-- cuerpo del diálogo -->
+            <div class="modal-body alert alert-secondary">
+              <!--Se debe oider introducir correo y contraseña para iniciar sesion-->
+              <form id="inicioSesion" method="get" action="/user/login">
+                <div class="mb-3 row">
+                  <label for="correoLogin" class="col-sm-3 col-form-label" id="correoInicio">Correo:</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control" name="correo" id = "correoLogin" required>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="clave1" class="col-sm-3 col-form-label">Contraseña:</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control" id = "clave1" name="contraseña" required>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <input type="checkbox" id="mostrarContrasenaLogin" class="form-check-input"> <!--Este checkbox cambia el tipo de contraseña para que quede visible-->
+                        <label class="form-check-label" for="mostrarContrasenaLogin">Mostrar Contraseña</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <div class="offset-sm-3 col-sm-9">
+                    <button type="submit" class="btn botonsabermas" id="idConfirmarInicio">Confirmar</button>
+                    <button type="button" class="btn botonsabermas" data-bs-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer body-bg"> <!--Parte baja de la ventana modal, cambia a la otra modal si tienes que crear cuenta-->
+              <h6>¿No tienes cuenta?</h6>
+              <button type="button" class="btn botonsabermas" data-bs-toggle="modal" data-bs-target="#crearCuenta"
+                data-bs-dismiss="modal">Crear Cuenta</button>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+  
     </header>
     
     <div class="bg-light m-auto pt-3 row container-fluid">

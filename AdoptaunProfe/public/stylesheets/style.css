@@ -7,7 +7,11 @@ body {
 div{
   border-radius: 10px;
 }
-
+.botonInicioSesion{  /*fondo blanco letra azul y tipografia garamont */
+  background-color: white;
+  color :white;
+  text-decoration-color: white;
+  }
 a {
   color: #00B7FF;
 }
