@@ -1,11 +1,11 @@
 //const appModule = require('../app.js'); 
-var db = require("../database");
+
 class DaoAdoptaUnProfe{
     pool;
 
     constructor(pool){
         //asignandole el pool de conexiones al pool del Dao
-        this.pool = db.pool;
+        this.pool = pool;
     }
 
     //generando la conexion del pool
