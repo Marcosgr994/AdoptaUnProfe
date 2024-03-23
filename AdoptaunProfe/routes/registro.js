@@ -36,33 +36,35 @@ router.post("/signup", multerFactory.none(), [
         return true;
     })
 ], async (req, res) => {
-    // Comprobación de errores de validación
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        // Limpiar los campos del formulario y mostrar mensajes de error detallados
-        const errorMessages = errors.array().map(error => error.msg);
-        return res.status(400).json({ errors: errorMessages });
-    }
+// Comprobación de errores de validación
+const errors = validationResult(req);
+if (!errors.isEmpty()) {
+    // Concatenar todos los mensajes de error en una sola cadena
+    const errorMessages = errors.array().map(error => error.msg).join("\n");
+    return res.status(400).json({ error: errorMessages });
+}
+
 
     // Procesar el registro del alumno
-    const { username: usuario, email,password: contrasena } = req.body;
+    const { username: usuario, email, password: contrasena } = req.body;
+    console.log("requerimientos: ", req.body);
     try {
         // Verificar si el correo electrónico ya está registrado en la base de datos
         const alumnoExistente = await daoAlumnos.obtenerAlumnoPorEmail(email);
         if (alumnoExistente) {
-            return res.status(400).json({ error: "El correo electrónico ya está registrado" });
+            return res.status(400).send("El correo electrónico ya está registrado");
         }
         // ingresando el alta a BBDD
         await daoAlumnos.altaAlumnos({ usuario, email, contrasena });
-        res.status(201).json({ mensaje: "Alumno registrado exitosamente" });
+        res.send({ message: "Alumno registrado exitosamente" });
     } catch (error) {
         console.error("Error al registrar alumno:", error);
-        res.status(500).json({ error: "Error interno del servidor" });
+        res.status(500).send("Error interno del servidor");
     }
 });
 
 router.get('/signup', function (req, res, next) {
-    res.render('registro', {title: 'Registro'});
+    res.render('registro', { title: 'Registro' });
 });
 
 module.exports = router;
