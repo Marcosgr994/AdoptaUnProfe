@@ -60,11 +60,11 @@ document.getElementById('registroForm').addEventListener('submit', async functio
         body: formData
     });
     if (response.ok) {
-        // Si la respuesta es exitosa, mostrar el mensaje de éxito en el modal
+        // Si la respuesta es exitosa
         const responseData = await response.json();
         mostrarMensajeModal(responseData.message, true);
     } else {
-        // Si hay un error en la respuesta, mostrar el mensaje de error en el modal
+        // Si hay un error en la respuesta
         const responseData = await response.text();
         mostrarMensajeModal(responseData, false);
     }
