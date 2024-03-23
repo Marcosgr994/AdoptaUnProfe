@@ -30,9 +30,9 @@ describe('POST /signup',()=>{
         .post('/signup')
         .send(newAlumnos);
         // Comprobar que se conecto correctamente
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
         // Comprobar que la respuesta contiene el mensaje de éxito esperado
-        expect(response.body).toHaveProperty('mensaje', 'Alumno registrado exitosamente');
+        expect(response.body).toHaveProperty('message', 'Alumno registrado exitosamente');
     });
 
     test('debería devolver un error si el correo electrónico es invalido', async () => {
@@ -63,7 +63,7 @@ describe('POST /signup',()=>{
         expect(response.status).toBe(400);
     
         // Comprobar que la respuesta contiene el mensaje de error esperado
-        expect(response.body.errors).toContain('El dominio del correo electrónico no es válido');
+        expect(response.body).toEqual({ error: "El dominio del correo electrónico no es válido" });
     });
     
 });
