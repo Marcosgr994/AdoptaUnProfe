@@ -28,6 +28,19 @@ document.getElementById('password').addEventListener('input', validarRegistro);
 document.getElementById('confirm_password').addEventListener('input', validarRegistro);
 
 
+// Función para limpiar los campos del formulario en el modal de registro
+function limpiarCamposRegistro() {
+    document.getElementById('username').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('confirm_password').value = '';
+    document.getElementById('confirm_sign_up').disabled = true; // Deshabilitar el botón de registro
+    document.getElementById('confirm_password_error').innerHTML = ''; // Limpiar el mensaje de error de confirmación de contraseña
+}
+
+
+
+
 // Función para mostrar el mensaje en el modal
 function mostrarMensajeModal(mensaje, exitoso) {
     const mensajeModalBody = document.getElementById('mensajeModalBody');
@@ -39,6 +52,7 @@ function mostrarMensajeModal(mensaje, exitoso) {
 
     if (exitoso) {
         modalContent.classList.add('modal-content-success');
+        limpiarCamposRegistro();
     } else {
         modalContent.classList.add('modal-content-error');
     }
