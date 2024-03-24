@@ -55,6 +55,7 @@ function mostrarMensajeModal(mensaje, exitoso) {
         limpiarCamposRegistro();
     } else {
         modalContent.classList.add('modal-content-error');
+        limpiarCamposRegistro();
     }
 
     // Insertar mensaje en el cuerpo del modal
