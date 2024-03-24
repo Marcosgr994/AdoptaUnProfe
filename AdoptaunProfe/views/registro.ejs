@@ -15,37 +15,40 @@
                 <form id="registroForm" action="/users/Profesorsignup" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Nombre de Profesor:</label>
-                        <input type="text" class="form-control" id="username" name="username" required
-                            pattern="^[a-zA-Z0-9]+$" title="El usuario solo puede contener letras y números" oninput="validarRegistro()">
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos del Profesor:</label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" id="email" name="email" required oninput="validarRegistro()">
-                    </div>
-                    <div class="form-group">
-                        <label for="subjects">Materias:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="rang" class="form-label">Rango:</label>
-                        <input type="text" class="form-control" id="rang" name="rang" required oninput="validarRegistro()">
+                        <label for="materia" class="form-label">Materias:</label>
+                        <textarea class="form-control" id="materia" name="materia" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="desc" class="form-label">Estudios: (opcional)</label>
-                        <input type="text" class="form-label" id="desc" name="desc" required maxlength="200" oninput="validarRegistro()">
+                        <label for="rangos" class="form-label">Rangos:</label>
+                        <input type="text" class="form-control" id="rangos" name="rangos" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Descripción:</label>
+                        <input type="text" class="form-control" id="desc" name="desc" maxlength="200">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña:</label>
                         <input type="password" class="form-control" id="password" name="password" minlength="8"
-                            maxlength="24" title="La contraseña debe tener entre 8 y 24 caracteres" oninput="validarRegistro()">
+                            maxlength="24" required>
                     </div>
                     <div class="mb-3">
                         <label for="confirm_password" class="form-label">Repetir Contraseña:</label>
                         <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                            required oninput="validarRegistro()">
+                            required>
                         <div id="confirm_password_error" style="color: rgb(248, 131, 131);"></div>
                     </div>
-                    <button type="submit" disabled class="btn btn-primary " id="confirm_sign_up">Registrarse</button>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         </div>
